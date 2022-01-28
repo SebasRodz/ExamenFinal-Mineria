@@ -128,6 +128,7 @@ def main():
     st.text(f'\nEjemplo de implementacion con A y hmmlear cerrado: {np.allclose(a_model, model.transmat_, atol=0.1)}')
     st.text(f'Ejemplo de implementacion con B y hmmlear cerrado: {np.allclose(b_model, model.emissionprob_, atol=0.1)}')
     
+    # Formulario
     st.subheader('Formulario')
     option = ['A', 'B']
     option2 = ['0', '1', '2']
