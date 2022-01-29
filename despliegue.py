@@ -3,7 +3,7 @@ import numpy as np
 from hmmlearn import hmm
 import streamlit as st
 
-data = pd.read_csv('data_python.csv')
+data = pd.read_csv('data_final_covid.csv')
 
 def forward(V, a, b, initial_distribution):
     alpha = np.zeros((V.shape[0], a.shape[0]))
@@ -67,10 +67,11 @@ def baum_welch(V, a, b, initial_distribution, n_iter=100):
 
 def Agregar(A, B, dataset):
     dataset = dataset.append({
-        "Hidden": A,
-        "Visible": B
+        "Status": A,
+        "Covid": B
     }, ignore_index=True)
     
+    dataset.to_csv('data_final_covid.csv', index=None)
     st.subheader('Datos agregados al final:')
     st.write(dataset.tail(5))
         
@@ -87,7 +88,7 @@ def main():
     st.subheader('Aplicación del Modelo')
     st.text('En esta parte se aplica el modelo hacia los datos definidos.')
     
-    V = data['Visible'].values
+    V = data['Covid'].values
     
     a = np.ones((2, 2))
     a = a / np.sum(a, axis=1)
